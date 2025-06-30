@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper productMapper;
     private final ProductRepository productRepository;
@@ -69,12 +69,8 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Page<ProductDTO> getAllProducts(String search, Pageable pageable) {
-        if (search != null && !search.isEmpty()) {
-            return productRepository.findByNameContainingIgnoreCase(search, pageable)
-                    .map(productMapper::toDTO);
-        } else {
-            return productRepository.findAll(pageable)
-                    .map(productMapper::toDTO);
-        }
+        // chỗ này nên dùng 1 hàm trong repo
+        return productRepository.findByNameContainingIgnoreCase(search, pageable)
+                .map(productMapper::toDTO);
     }
 }
