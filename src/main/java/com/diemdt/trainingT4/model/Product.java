@@ -1,21 +1,20 @@
 package com.diemdt.trainingT4.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name ;
+public class Product extends BaseEntity {
+    private String name;
 
     private Double price;
 
